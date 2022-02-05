@@ -1,0 +1,54 @@
+body {
+    background-color: sandybrown;
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+
+.the-game {
+    display: none;
+}
+
+
+h1 {
+    display: none;
+    cursor: pointer;
+    border: 2px white solid;
+    margin: 300px;
+}
+
+
+.sten  {
+    background: none;
+    border: none;
+    font-size: 150px;
+    margin: 30px;
+}
+
+
+.sax {
+    background: none;
+    border: none; 
+    font-size: 150px;
+    margin: 30px;
+}
+
+.pase {
+    background: none; 
+    border: none; 
+    font-size: 150px;
+    margin: 30px;
+}
+
+
+.my-points {
+    font-weight: bold;
+    font-size: large;
+}
+
+.comp-points {
+    font-weight: bold;
+    font-size: large;
+}
