@@ -12,11 +12,11 @@ body {
 }
 
 
-h1 {
+.reset-button {
     display: none;
     cursor: pointer;
     border: 2px white solid;
-    margin: 300px;
+    margin-top: 10%;
 }
 
 
@@ -45,10 +45,16 @@ h1 {
 
 .my-points {
     font-weight: bold;
-    font-size: large;
+    font-size: xx-large;
 }
 
 .comp-points {
     font-weight: bold;
     font-size: large;
+}
+
+.score {
+    margin-top: 20%;
+    font-size: xx-large;
+    color: black;
 }

@@ -13,7 +13,7 @@ const compChoice = document.querySelector(".comp-choice");
 const myPoints = document.querySelector(".my-points");
 const compPoints = document.querySelector(".comp-points");
 
-const restart = document.querySelector("h1");
+const restart = document.querySelector(".reset-button");
 
 
 let myPointsCounter = 0;
@@ -29,7 +29,7 @@ function restartGame () {
         myPoints.innerHTML = myPointsCounter;
 
         compPointsCounter = 0;
-        compPoints.innerHTML = compPointsCounter;
+        // compPoints.innerHTML = compPointsCounter;
 
         buttons.forEach(btns => btns.disabled=false);
         restart.setAttribute("style", "display: none");
@@ -45,19 +45,28 @@ function restartGame () {
 
 
 
-function checkIfWon () {
+function checkIfLose () {
 
 
-    if (myPointsCounter === 3) {
-        alert("Congratz, you won!");
-        buttons.forEach(btns => btns.disabled=true);
-        restart.setAttribute("style", "display: block");
-        restartGame();
+    // if (myPointsCounter === 3) {
+    //     alert("Congratz, you won!");
+    //     buttons.forEach(btns => btns.disabled=true);
+    //     restart.setAttribute("style", "display: block");
+    //     restartGame();
 
-    } else if (compPointsCounter === 3) {
+    // } else if (compPointsCounter === 3) {
+    //     alert("Sorry, but you are a loser!")
+    //     buttons.forEach(btns => btns.disabled=true);
+    //     restart.setAttribute("style", "display: block");
+    //     restartGame();
+    // }
+
+    if (compPointsCounter === 1) {
         alert("Sorry, but you are a loser!")
         buttons.forEach(btns => btns.disabled=true);
         restart.setAttribute("style", "display: block");
+        myPointsCounter = 0;
+        myPoints.innerHTML = myPointsCounter;
         restartGame();
     }
 
@@ -79,11 +88,11 @@ function addWinPoints () {
 
     } else if (myChoice.innerHTML == "✊🏼" && compChoice.innerHTML == "✋🏼") {
         compPointsCounter ++;
-        compPoints.innerHTML = compPointsCounter;
+        // compPoints.innerHTML = compPointsCounter;
 
     } else if (myChoice.innerHTML == "✌🏼" && compChoice.innerHTML == "✊🏼") {
         compPointsCounter ++;
-        compPoints.innerHTML = compPointsCounter;
+        // compPoints.innerHTML = compPointsCounter;
     } else if (myChoice.innerHTML == "✌🏼" && compChoice.innerHTML == "✋🏼") {
         myPointsCounter ++; 
         myPoints.innerHTML = myPointsCounter;
@@ -92,12 +101,12 @@ function addWinPoints () {
         myPoints.innerHTML = myPointsCounter;
     } else if (myChoice.innerHTML == "✋🏼" && compChoice.innerHTML == "✌🏼") {
         compPointsCounter ++;
-        compPoints.innerHTML = compPointsCounter;
+        // compPoints.innerHTML = compPointsCounter;
     } 
 
 
     setTimeout(() => {
-        checkIfWon();
+        checkIfLose();
     }, 200);
 
 }
@@ -150,6 +159,13 @@ function setName () {
         makeChoice();
 
     });
+}
+
+
+
+
+function addScore() {
+
 }
 
 
