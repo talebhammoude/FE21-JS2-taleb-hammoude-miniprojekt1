@@ -15,8 +15,9 @@ body {
 .reset-button {
     display: none;
     cursor: pointer;
-    border: 2px white solid;
+    border: 2px darkgray solid;
     margin-top: 10%;
+    text-align: center;
 }
 
 
