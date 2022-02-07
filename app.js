@@ -19,8 +19,7 @@ const restart = document.querySelector(".reset-button");
 let myPointsCounter = 0;
 let compPointsCounter = 0;
 
-
-
+const database = firebase.database();
 
 function restartGame () {
 
@@ -40,8 +39,6 @@ function restartGame () {
     })
 
 }
-
-
 
 
 
@@ -147,7 +144,6 @@ function makeChoice () {
 
 
 
-
 function setName () {
 
     saveNameBtn.addEventListener("click", (e) => {
@@ -156,7 +152,12 @@ function setName () {
 
         theGame.setAttribute("style", "display: block");
         yourName.setAttribute("style", "display: none");
+
+     
+
         makeChoice();
+
+
 
     });
 }
