@@ -183,13 +183,13 @@ function setName () {
 
     saveNameBtn.addEventListener("click", (e) => {
         myName.innerHTML = inputField.value;
-        inputField.value = "";
+      
 
         theGame.setAttribute("style", "display: block");
         yourName.setAttribute("style", "display: none");
 
      
-        writeUserData(1, "Taleb", "t.@d.se", "https://google.se");
+        writeUserData(1, inputField.value, "t.@d.se", "https://google.se");
 
 
         makeChoice();
