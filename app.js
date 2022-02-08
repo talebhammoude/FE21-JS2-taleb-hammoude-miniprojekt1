@@ -19,7 +19,42 @@ const restart = document.querySelector(".reset-button");
 let myPointsCounter = 0;
 let compPointsCounter = 0;
 
-const database = firebase.database();
+
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
+import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js';
+
+
+// TODO: Replace with your app's Firebase project configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyCdAnlmX_mxn81UBIBOdlpZdiSmAjzmH10",
+    authDomain: "fe21-js2-801d6.firebaseapp.com",
+    databaseURL: "https://fe21-js2-801d6-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "fe21-js2-801d6",
+    storageBucket: "fe21-js2-801d6.appspot.com",
+    messagingSenderId: "150869399051",
+    appId: "1:150869399051:web:94e387e05b4756522d990e"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  
+  // Get a reference to the database service
+  const database = getDatabase(app);
+
+
+  function writeUserData(userId, name, email, imageUrl) {
+    const db = getDatabase();
+    set(ref(db, 'users/' + userId), {
+      username: name,
+      email: email,
+      profile_picture : imageUrl
+    });
+  }
+
+
+
+
+
+
 
 function restartGame () {
 
@@ -154,6 +189,8 @@ function setName () {
         yourName.setAttribute("style", "display: none");
 
      
+        writeUserData(1, "Taleb", "t.@d.se", "https://google.se");
+
 
         makeChoice();
 
