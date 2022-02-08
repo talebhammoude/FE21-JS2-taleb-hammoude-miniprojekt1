@@ -14,14 +14,14 @@ const myPoints = document.querySelector(".my-points");
 const compPoints = document.querySelector(".comp-points");
 
 const restart = document.querySelector(".reset-button");
-
+const list = document.getElementById("the-list");
 
 let myPointsCounter = 0;
 let compPointsCounter = 0;
 
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
-import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js';
+import { getDatabase, ref, set, child, get, limitToLast, query  } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js';
 
 
 // TODO: Replace with your app's Firebase project configuration
@@ -39,15 +39,49 @@ const firebaseConfig = {
   
   // Get a reference to the database service
   const database = getDatabase(app);
+  const usersRef = ref(database, 'users/');
+  
 
-
-  function writeUserData(userId, name, score) {
+  function writeUserData(userID, name, score) {
     const db = getDatabase();
-    set(ref(db, 'users/' + userId), {
+    set(ref(db, 'users/' + userID), {
       name: name,
       score: score
     });
   }
+
+
+  function readUserData() {
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `users/`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                let data = Object.values(snapshot.val());
+                console.log(data);
+                data.sort((a,b)=>{
+                    return a.score - b.score;
+                });
+
+                data.reverse();
+  
+                let dataSlicedToFirstFive = data.slice(0, 5);
+                
+                dataSlicedToFirstFive.forEach((item)=>{
+                    let li = document.createElement("li");
+                    li.innerText = item.name + ": " + item.score;
+                    list.appendChild(li);
+                })
+
+
+            } else {
+                console.log("No data available");
+            }
+            }).catch((error) => {
+                console.error(error);
+            });
+    }
+
+
+
 
 
 
@@ -159,6 +193,7 @@ function compMakeChoice () {
 
 
 function makeChoice () {
+    
 
     buttons.forEach(btns => btns.addEventListener("click", (e) => {
 
@@ -183,6 +218,7 @@ function setName () {
         yourName.setAttribute("style", "display: none");
 
      
+        readUserData();
        
 
         makeChoice();
