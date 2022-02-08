@@ -41,12 +41,11 @@ const firebaseConfig = {
   const database = getDatabase(app);
 
 
-  function writeUserData(userId, name, email, imageUrl) {
+  function writeUserData(userId, name, score) {
     const db = getDatabase();
     set(ref(db, 'users/' + userId), {
-      username: name,
-      email: email,
-      profile_picture : imageUrl
+      name: name,
+      score: score
     });
   }
 
@@ -80,21 +79,16 @@ function restartGame () {
 function checkIfLose () {
 
 
-    // if (myPointsCounter === 3) {
-    //     alert("Congratz, you won!");
-    //     buttons.forEach(btns => btns.disabled=true);
-    //     restart.setAttribute("style", "display: block");
-    //     restartGame();
-
-    // } else if (compPointsCounter === 3) {
-    //     alert("Sorry, but you are a loser!")
-    //     buttons.forEach(btns => btns.disabled=true);
-    //     restart.setAttribute("style", "display: block");
-    //     restartGame();
-    // }
-
     if (compPointsCounter === 1) {
         alert("Sorry, but you are a loser!")
+
+
+        //Checka om poäng tillräckligt högt för att lägga till i db.
+        if(myPoints.innerHTML >= 1) {
+            writeUserData(Math.floor(Math.random() * 100), myName.innerHTML, myPoints.innerHTML);
+        }
+        
+
         buttons.forEach(btns => btns.disabled=true);
         restart.setAttribute("style", "display: block");
         myPointsCounter = 0;
@@ -189,8 +183,7 @@ function setName () {
         yourName.setAttribute("style", "display: none");
 
      
-        writeUserData(1, inputField.value, "t.@d.se", "https://google.se");
-
+       
 
         makeChoice();
 
