@@ -21,7 +21,7 @@ let compPointsCounter = 0;
 
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
-import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js';
+import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js';
 
 
 // TODO: Replace with your app's Firebase project configuration
